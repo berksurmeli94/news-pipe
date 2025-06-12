@@ -1,0 +1,23 @@
+# .gitignore
+
+# .NET
+bin/
+obj/
+*.user
+*.vs
+
+# Node
+node_modules/
+
+# Ruby
+.bundle/
+log/
+tmp/
+*.gem
+
+# Docker
+**/Dockerfile.*
+**/docker-compose*.yml
+
+# Environment files
+.env
