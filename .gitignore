@@ -15,9 +15,5 @@ log/
 tmp/
 *.gem
 
-# Docker
-**/Dockerfile.*
-**/docker-compose*.yml
-
 # Environment files
 .env
