@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  url: <%= ENV['DATABASE_URL'] || "postgres://postgres:yourpassword@localhost:5432/newspipe_development" %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] || "postgres://postgres:yourpassword@localhost:5432/newspipe_test" %>
