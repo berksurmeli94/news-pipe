@@ -14,6 +14,7 @@ services:
     environment:
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgres://postgres:yourpassword@postgres:5432/newspipe
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     command: ./entrypoint.sh
 
   clock:
@@ -24,8 +25,19 @@ services:
     environment:
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgres://postgres:yourpassword@postgres:5432/newspipe
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     working_dir: /app
     command: bundle exec clockwork config/clock.rb
+
+  backend:
+    build:
+      context: ./backend
+    depends_on:
+      - postgres
+    ports:
+      - "3000:8080"
+    environment:
+      DATABASE_URL: postgres://postgres:yourpassword@postgres:5432/newspipe
 
   websocket-server:
     build:
