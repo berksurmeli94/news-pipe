@@ -18,6 +18,9 @@ class ScraperWorker
       Sources::Bbc,
       Sources::TechCrunch
     ].flat_map { |s| Headline.create_from_source(s) }
+  rescue StandardError => e
+    Rails.logger.error "Failed to scrape headlines: #{e.message}"
+    nil
   end
 
   def publish_to_redis(headline)

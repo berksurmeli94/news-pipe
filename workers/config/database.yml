@@ -2,11 +2,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  url: <%= ENV['DATABASE_URL'] || "postgres://postgres:yourpassword@localhost:5432/newspipe_development" %>
+  url: <%= ENV['DATABASE_URL'] || "postgres://postgres:yourpassword@localhost:5433/newspipe" %>
 
 development:
-  <<: *default
+  adapter: postgresql
+  host: localhost
+  port: 5433
+  database: newspipe
+  username: postgres
+  password: yourpassword
 
-test:
-  <<: *default
-  url: <%= ENV['DATABASE_URL'] || "postgres://postgres:yourpassword@localhost:5432/newspipe_test" %>
+# test:
+#   <<: *default
+#   url: <%= ENV['DATABASE_URL'] || "postgres://postgres:yourpassword@host.docker.internal:5432/newspipe_test" %>

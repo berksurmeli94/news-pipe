@@ -4,7 +4,8 @@ gem "rails", "~> 8.0.2"
 gem "pg", "~> 1.1"
 gem "sidekiq"
 gem "redis"
-gem "clockwork" # or sidekiq-cron, depending on what you're using
+gem "clockwork"
+gem 'ruby-openai'
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
