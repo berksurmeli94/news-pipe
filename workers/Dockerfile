@@ -14,6 +14,8 @@ RUN gem install bundler:2.5.3 && bundle install     # 👈 Pin bundler to match 
 
 COPY . .
 
+RUN chmod +x /app/entrypoint.sh
+
 RUN useradd -m appuser
 RUN chown -R appuser:appuser /app
 USER appuser

@@ -6,23 +6,26 @@ services:
     ports:
       - "6379:6379"
 
-  scraper-worker:
+  workers:
     build:
-      context: ./scrapers
+      context: ./workers
     depends_on:
       - redis
     environment:
       REDIS_URL: redis://redis:6379/0
-    command: bundle exec sidekiq -r ./worker.rb
+      DATABASE_URL: postgres://postgres:yourpassword@postgres:5432/newspipe
+    command: ./entrypoint.sh
 
-  scraper-clock:
+  clock:
     build:
-      context: ./scrapers
+      context: ./workers
     depends_on:
       - redis
     environment:
       REDIS_URL: redis://redis:6379/0
-    command: bundle exec clockwork clock.rb
+      DATABASE_URL: postgres://postgres:yourpassword@postgres:5432/newspipe
+    working_dir: /app
+    command: bundle exec clockwork config/clock.rb
 
   websocket-server:
     build:
@@ -41,20 +44,9 @@ services:
       POSTGRES_PASSWORD: yourpassword
       POSTGRES_DB: newspipe
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-
-  backend:
-    build:
-      context: ./backend
-    depends_on:
-      - postgres
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=newspipe;Username=postgres;Password=yourpassword
-    ports:
-      - "5000:80"
 
 volumes:
   pgdata:
