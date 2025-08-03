@@ -17,3 +17,7 @@ tmp/
 
 # Environment files
 .env
+
+# IntelliJ IDEA
+.idea/
+*.iml
