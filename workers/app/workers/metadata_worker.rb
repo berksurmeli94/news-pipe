@@ -16,7 +16,7 @@ class MetadataWorker
   private
 
   def generate_metadata(headline)
-    Services::ChatgptMetadataAgent.call(title: "6 Weeks of Claude Code", url: "https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/")
+    Services::ChatgptMetadataAgent.call(title: headline.title, url: headline.url)
   rescue OpenAI::Error => e
     Rails.logger.error "OpenAI error while generating metadata for headline #{headline.id}: #{e.message}"
   rescue StandardError => e
