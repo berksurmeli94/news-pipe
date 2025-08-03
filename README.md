@@ -18,14 +18,16 @@
 
 ## 📁 Project Structure
 
+```
 news-pipe/
-├── backend/ # Backend API written in C#
-├── worker-scraper/ # Ruby-based scraper to fetch news
-├── worker-metadata/ # Ruby-based metadata generator using OpenAI
-├── websocket-server/ # Node.js WebSocket server
-├── docker-compose.yml # Docker Compose configuration
-├── LICENSE # MIT License
-└── README.md # Project documentation
+├── backend/              # Backend API written in C#
+├── worker-scraper/       # Ruby-based scraper to fetch news
+├── worker-metadata/      # Ruby-based metadata generator using OpenAI
+├── websocket-server/     # Node.js WebSocket server
+├── docker-compose.yml    # Docker Compose configuration
+├── LICENSE               # MIT License
+└── README.md             # Project documentation
+```
 
 ### Prerequisites
 
