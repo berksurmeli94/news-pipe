@@ -47,7 +47,7 @@ news-pipe/
 2. Start all services:
    docker-compose up --build
 
-### Architecture Overview
+## 📁 Architecture Overview
 
        +------------------+
        |  News Websites   |
